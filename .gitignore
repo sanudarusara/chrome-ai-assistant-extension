@@ -1,0 +1,36 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# Node modules (if you add a build system later)
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Chrome extension package files
+*.zip
+*.crx
+
+# Temporary files
+*.tmp
+*.temp
+
+# Git metadata backups
+.git.bak/
+
+# Chrome Web Store generated metadata
+_metadata/

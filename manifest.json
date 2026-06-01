@@ -1,0 +1,48 @@
+{
+    "manifest_version": 3,
+    "name": "AI Selection Assistant",
+    "version": "1.0",
+    "permissions": [
+        "contextMenus",
+        "storage",
+        "sidePanel",
+        "activeTab",
+        "declarativeNetRequest"
+    ],
+    "host_permissions": [
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*",
+        "https://www.perplexity.ai/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "declarative_net_request": {
+        "rule_resources": [
+            {
+                "enabled": true,
+                "id": "ruleset_1",
+                "path": "rules.json"
+            }
+        ]
+    },
+    "content_scripts": [
+        {
+            "all_frames": true,
+            "matches": [
+                "https://chatgpt.com/*",
+                "https://gemini.google.com/*",
+                "https://www.perplexity.ai/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "side_panel": {
+        "default_path": "sidepanel.html"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
