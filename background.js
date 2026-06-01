@@ -1,3 +1,5 @@
+console.log("BACKGROUND LOADED");
+
 chrome.runtime.onInstalled.addListener(() => {
 
     chrome.contextMenus.create({
@@ -63,6 +65,45 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
         await chrome.sidePanel.open({
             windowId: tab.windowId
         });
+
+    }
+
+});
+
+chrome.commands.onCommand.addListener((command) => {
+
+    if (command === "send-selection") {
+
+        chrome.tabs.query(
+            {
+                active: true,
+                currentWindow: true
+            },
+            (tabs) => {
+
+                console.log("SHORTCUT FIRED");
+                console.log("TAB ID:", tabs[0]?.id);
+                console.log("TAB URL:", tabs[0]?.url);
+                console.log("TAB TITLE:", tabs[0]?.title);
+
+                chrome.tabs.sendMessage(
+                    tabs[0].id,
+                    {
+                        action: "getSelection"
+                    },
+                    () => {
+
+                        if (chrome.runtime.lastError) {
+                            console.log(
+                                "No content script on this page"
+                            );
+                        }
+
+                    }
+                );
+
+            }
+        );
 
     }
 

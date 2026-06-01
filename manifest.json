@@ -14,6 +14,14 @@
         "https://gemini.google.com/*",
         "https://www.perplexity.ai/*"
     ],
+    "commands": {
+        "send-selection": {
+            "suggested_key": {
+                "default": "Alt+A"
+            },
+            "description": "Send selected text to active AI"
+        }
+    },
     "background": {
         "service_worker": "background.js"
     },
@@ -36,6 +44,14 @@
             ],
             "js": [
                 "content.js"
+            ]
+        },
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "pageContent.js"
             ]
         }
     ],

@@ -40,6 +40,57 @@ function waitForElement(selector) {
 
 }
 
+function insertTextIntoAI(text) {
+
+    const hostname = window.location.hostname;
+
+    let selector = null;
+
+    if (hostname.includes("chatgpt.com")) {
+        selector = "#prompt-textarea";
+    }
+
+    if (hostname.includes("gemini.google.com")) {
+        selector = ".ql-editor.textarea";
+    }
+
+    if (hostname.includes("perplexity.ai")) {
+        selector = "#ask-input";
+    }
+
+    if (!selector) {
+        return;
+    }
+
+    waitForElement(selector)
+        .then((element) => {
+
+            console.log("INJECTING:", text);
+
+            element.focus();
+
+            document.execCommand(
+                "insertText",
+                false,
+                text
+            );
+
+            element.dispatchEvent(
+                new InputEvent(
+                    "input",
+                    {
+                        bubbles: true,
+                        inputType: "insertText",
+                        data: text
+                    }
+                )
+            );
+
+        });
+
+}
+
+// Initial prompt when AI is first opened
 chrome.storage.local.get(
     ["sidePanelState"],
     (items) => {
@@ -49,56 +100,40 @@ chrome.storage.local.get(
             items.sidePanelState.selectedText
         ) {
 
-            const hostname = window.location.hostname;
-
-            let selector = null;
-
-            if (hostname.includes("chatgpt.com")) {
-                selector = "#prompt-textarea";
-            }
-
-            if (hostname.includes("gemini.google.com")) {
-                selector = ".ql-editor.textarea";
-            }
-
-            if (hostname.includes("perplexity.ai")) {
-                selector = "#ask-input";
-            }
-
-            if (!selector) {
-                return;
-            }
-
-            waitForElement(selector)
-                .then((element) => {
-
-                    console.log("FOUND INPUT");
-                    console.log(hostname);
-
-                    const text =
-                        items.sidePanelState.selectedText;
-
-                    element.focus();
-
-                    document.execCommand(
-                        "insertText",
-                        false,
-                        text
-                    );
-
-                    element.dispatchEvent(
-                        new InputEvent(
-                            "input",
-                            {
-                                bubbles: true,
-                                inputType: "insertText",
-                                data: text
-                            }
-                        )
-                    );
-
-                });
+            insertTextIntoAI(
+                items.sidePanelState.selectedText
+            );
 
         }
 
-    });
+    }
+);
+
+// Listen for live updates from Alt+A
+chrome.storage.onChanged.addListener(
+    (changes, namespace) => {
+
+        console.log(
+            "STORAGE CHANGED",
+            changes
+        );
+
+        if (
+            namespace === "local" &&
+            changes.livePrompt
+        ) {
+
+            const text =
+                changes.livePrompt.newValue.text;
+
+            console.log(
+                "LIVE PROMPT RECEIVED",
+                text
+            );
+
+            insertTextIntoAI(text);
+
+        }
+
+    }
+);
