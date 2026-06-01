@@ -40,7 +40,10 @@ function waitForElement(selector) {
 
 }
 
-function insertTextIntoAI(text) {
+function insertTextIntoAI(
+    text,
+    needsInputEvent = true
+) {
 
     const hostname = window.location.hostname;
 
@@ -65,7 +68,11 @@ function insertTextIntoAI(text) {
     waitForElement(selector)
         .then((element) => {
 
-            console.log("INJECTING:", text);
+            console.log(
+                "INJECTING:",
+                text,
+                Date.now()
+            );
 
             element.focus();
 
@@ -75,16 +82,20 @@ function insertTextIntoAI(text) {
                 text
             );
 
-            element.dispatchEvent(
-                new InputEvent(
-                    "input",
-                    {
-                        bubbles: true,
-                        inputType: "insertText",
-                        data: text
-                    }
-                )
-            );
+            if (needsInputEvent) {
+
+                element.dispatchEvent(
+                    new InputEvent(
+                        "input",
+                        {
+                            bubbles: true,
+                            inputType: "insertText",
+                            data: text
+                        }
+                    )
+                );
+
+            }
 
         });
 
@@ -131,7 +142,18 @@ chrome.storage.onChanged.addListener(
                 text
             );
 
-            insertTextIntoAI(text);
+            const hostname =
+                window.location.hostname;
+
+            const needsInputEvent =
+                !hostname.includes(
+                    "perplexity.ai"
+                );
+
+            insertTextIntoAI(
+                text,
+                needsInputEvent
+            );
 
         }
 
