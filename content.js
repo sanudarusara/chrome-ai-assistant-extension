@@ -49,10 +49,31 @@ chrome.storage.local.get(
             items.sidePanelState.selectedText
         ) {
 
-            waitForElement("#prompt-textarea")
+            const hostname = window.location.hostname;
+
+            let selector = null;
+
+            if (hostname.includes("chatgpt.com")) {
+                selector = "#prompt-textarea";
+            }
+
+            if (hostname.includes("gemini.google.com")) {
+                selector = ".ql-editor.textarea";
+            }
+
+            if (hostname.includes("perplexity.ai")) {
+                selector = "#ask-input";
+            }
+
+            if (!selector) {
+                return;
+            }
+
+            waitForElement(selector)
                 .then((element) => {
 
-                    console.log("FOUND TEXTBOX");
+                    console.log("FOUND INPUT");
+                    console.log(hostname);
 
                     const text =
                         items.sidePanelState.selectedText;
