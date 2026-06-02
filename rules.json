@@ -41,7 +41,8 @@
         "gemini.google.com",
         "perplexity.ai",
         "www.perplexity.ai",
-        "claude.ai"
+        "claude.ai",
+        "chat.deepseek.com"
       ],
       "resourceTypes": [
         "sub_frame",

@@ -65,6 +65,10 @@ function insertTextIntoAI(
         selector = ".tiptap.ProseMirror";
     }
 
+    if (hostname.includes("deepseek.com")) {
+        selector = "textarea";
+    }
+
     if (!selector) {
         return;
     }
