@@ -1,3 +1,6 @@
+import { AI_SERVICES }
+from "./aiServices.js";
+
 console.log("Popup Loaded");
 
 const container =

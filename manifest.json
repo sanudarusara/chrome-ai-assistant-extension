@@ -14,7 +14,8 @@
         "https://gemini.google.com/*",
         "https://www.perplexity.ai/*",
         "https://claude.ai/*",
-        "https://chat.deepseek.com/*"
+        "https://chat.deepseek.com/*",
+        "https://grok.com/*"
     ],
     "commands": {
         "send-selection": {
@@ -25,7 +26,8 @@
         }
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
+        "type": "module"
     },
     "declarative_net_request": {
         "rule_resources": [
@@ -44,7 +46,8 @@
                 "https://gemini.google.com/*",
                 "https://www.perplexity.ai/*",
                 "https://claude.ai/*",
-                "https://chat.deepseek.com/*"
+                "https://chat.deepseek.com/*",
+                "https://grok.com/*"
             ],
             "js": [
                 "content.js"

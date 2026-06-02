@@ -42,7 +42,8 @@
         "perplexity.ai",
         "www.perplexity.ai",
         "claude.ai",
-        "chat.deepseek.com"
+        "chat.deepseek.com",
+        "grok.com"
       ],
       "resourceTypes": [
         "sub_frame",

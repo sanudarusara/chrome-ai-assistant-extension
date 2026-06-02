@@ -1,4 +1,4 @@
-const AI_SERVICES = [
+export const AI_SERVICES = [
     {
         id: "chatgpt",
         name: "ChatGPT",
@@ -32,5 +32,11 @@ const AI_SERVICES = [
         name: "DeepSeek",
         url: "https://chat.deepseek.com",
         setting: "showDeepSeek"
+    },
+    {
+        id: "grok",
+        name: "Grok",
+        url: "https://grok.com",
+        setting: "showGrok"
     }
 ];
