@@ -1,72 +1,123 @@
 console.log("BACKGROUND LOADED");
 
+const AI_SERVICES = [
+    {
+        id: "chatgpt",
+        name: "ChatGPT",
+        url: "https://chatgpt.com",
+        setting: "showChatGPT"
+    },
+    {
+        id: "gemini",
+        name: "Gemini",
+        url: "https://gemini.google.com/app",
+        setting: "showGemini"
+    },
+    {
+        id: "perplexity",
+        name: "Perplexity",
+        url: "https://www.perplexity.ai",
+        setting: "showPerplexity"
+    }
+];
+
+function createMenus() {
+
+    chrome.contextMenus.removeAll(() => {
+
+        chrome.storage.sync.get(
+            [
+                "showChatGPT",
+                "showGemini",
+                "showPerplexity"
+            ],
+            (settings) => {
+
+                chrome.contextMenus.create({
+                    id: "ask-ai",
+                    title: "Ask AI",
+                    contexts: ["selection"]
+                });
+
+                chrome.contextMenus.create({
+                    id: "open-ai",
+                    title: "Open AI",
+                    contexts: ["page"]
+                });
+
+                AI_SERVICES.forEach((ai) => {
+
+                    if (
+                        settings[ai.setting] === false
+                    ) {
+                        return;
+                    }
+
+                    chrome.contextMenus.create({
+                        id: ai.id,
+                        parentId: "ask-ai",
+                        title: ai.name,
+                        contexts: ["selection"]
+                    });
+
+                    chrome.contextMenus.create({
+                        id: `open-${ai.id}`,
+                        parentId: "open-ai",
+                        title: ai.name,
+                        contexts: ["page"]
+                    });
+
+                });
+
+            }
+        );
+
+    });
+
+}
+
 chrome.runtime.onInstalled.addListener(() => {
 
-    chrome.contextMenus.create({
-        id: "ask-ai",
-        title: "Ask AI",
-        contexts: ["selection"]
-    });
-
-    chrome.contextMenus.create({
-        id: "chatgpt",
-        parentId: "ask-ai",
-        title: "ChatGPT",
-        contexts: ["selection"]
-    });
-
-    chrome.contextMenus.create({
-        id: "gemini",
-        parentId: "ask-ai",
-        title: "Gemini",
-        contexts: ["selection"]
-    });
-
-    chrome.contextMenus.create({
-        id: "perplexity",
-        parentId: "ask-ai",
-        title: "Perplexity",
-        contexts: ["selection"]
-    });
+    createMenus();
 
 });
 
-chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+chrome.storage.onChanged.addListener(
+    (changes, namespace) => {
 
-    if (
-        info.menuItemId === "chatgpt" ||
-        info.menuItemId === "gemini" ||
-        info.menuItemId === "perplexity"
-    ) {
+        if (namespace === "sync") {
 
-        let url = "";
+            createMenus();
 
-        if (info.menuItemId === "chatgpt") {
-            url = "https://chatgpt.com";
         }
-
-        if (info.menuItemId === "gemini") {
-            url = "https://gemini.google.com/app";
-        }
-
-        if (info.menuItemId === "perplexity") {
-            url = "https://www.perplexity.ai";
-        }
-
-        chrome.storage.local.set({
-            sidePanelState: {
-                url: url,
-                selectedText: info.selectionText,
-                provider: info.menuItemId,
-                timestamp: Date.now()
-            }
-        });
-
-        await chrome.sidePanel.open({
-            windowId: tab.windowId
-        });
 
     }
+);
+
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+
+    const ai = AI_SERVICES.find(
+        (service) =>
+            service.id === info.menuItemId ||
+            `open-${service.id}` === info.menuItemId
+    );
+
+    if (!ai) {
+        return;
+    }
+
+    chrome.storage.local.set({
+        sidePanelState: {
+            url: ai.url,
+            selectedText: info.selectionText || "",
+            provider: ai.id,
+            timestamp: Date.now()
+        }
+    });
+
+    await chrome.sidePanel.open({
+        windowId: tab.windowId
+    });
 
 });
 
@@ -94,9 +145,11 @@ chrome.commands.onCommand.addListener((command) => {
                     () => {
 
                         if (chrome.runtime.lastError) {
+
                             console.log(
                                 "No content script on this page"
                             );
+
                         }
 
                     }
