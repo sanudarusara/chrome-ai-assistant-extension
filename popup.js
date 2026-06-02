@@ -1,137 +1,71 @@
 console.log("Popup Loaded");
 
-const chatgptToggle =
+const container =
     document.getElementById(
-        "chatgptToggle"
+        "ai-settings"
     );
 
-const geminiToggle =
-    document.getElementById(
-        "geminiToggle"
-    );
+AI_SERVICES.forEach((ai) => {
 
-const perplexityToggle =
-    document.getElementById(
-        "perplexityToggle"
-    );
+    const row =
+        document.createElement("div");
 
-const claudeToggle =
-    document.getElementById(
-        "claudeToggle"
-    );
+    row.className =
+        "setting-row";
 
-const deepseekToggle =
-    document.getElementById(
-        "deepseekToggle"
+    row.innerHTML = `
+        <span>Enable ${ai.name}</span>
+
+        <label class="switch">
+            <input
+                type="checkbox"
+                id="${ai.id}Toggle"
+                checked
+            >
+            <span class="slider"></span>
+        </label>
+    `;
+
+    container.appendChild(row);
+
+});
+
+const settingKeys =
+    AI_SERVICES.map(
+        ai => ai.setting
     );
 
 chrome.storage.sync.get(
-    [
-        "showChatGPT",
-        "showGemini",
-        "showPerplexity",
-        "showClaude",
-        "showDeepSeek"
-    ],
+    settingKeys,
     (settings) => {
 
-        if (
-            settings.showChatGPT !==
-            undefined
-        ) {
-            chatgptToggle.checked =
-                settings.showChatGPT;
-        }
+        AI_SERVICES.forEach((ai) => {
 
-        if (
-            settings.showGemini !==
-            undefined
-        ) {
-            geminiToggle.checked =
-                settings.showGemini;
-        }
+            const toggle =
+                document.getElementById(
+                    `${ai.id}Toggle`
+                );
 
-        if (
-            settings.showPerplexity !==
-            undefined
-        ) {
-            perplexityToggle.checked =
-                settings.showPerplexity;
-        }
+            if (
+                settings[ai.setting] !==
+                undefined
+            ) {
+                toggle.checked =
+                    settings[ai.setting];
+            }
 
-        if (
-            settings.showClaude !==
-            undefined
-        ) {
-            claudeToggle.checked =
-                settings.showClaude;
-        }
+            toggle.addEventListener(
+                "change",
+                () => {
 
-        if (
-            settings.showDeepSeek !==
-            undefined
-        ) {
-            deepseekToggle.checked =
-                settings.showDeepSeek;
-        }
-    }
-);
+                    chrome.storage.sync.set({
+                        [ai.setting]:
+                            toggle.checked
+                    });
 
-chatgptToggle.addEventListener(
-    "change",
-    () => {
+                }
+            );
 
-        chrome.storage.sync.set({
-            showChatGPT:
-                chatgptToggle.checked
-        });
-
-    }
-);
-
-geminiToggle.addEventListener(
-    "change",
-    () => {
-
-        chrome.storage.sync.set({
-            showGemini:
-                geminiToggle.checked
-        });
-
-    }
-);
-
-perplexityToggle.addEventListener(
-    "change",
-    () => {
-
-        chrome.storage.sync.set({
-            showPerplexity:
-                perplexityToggle.checked
-        });
-
-    }
-);
-
-claudeToggle.addEventListener(
-    "change",
-    () => {
-
-        chrome.storage.sync.set({
-            showClaude:
-                claudeToggle.checked
-        });
-
-    }
-);
-
-deepseekToggle.addEventListener(
-    "change",
-    () => {
-
-        chrome.storage.sync.set({
-            showDeepSeek:
-                deepseekToggle.checked
         });
 
     }

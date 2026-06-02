@@ -29,22 +29,21 @@ const AI_SERVICES = [
         id: "deepseek",
         name: "DeepSeek",
         url: "https://chat.deepseek.com/",
-        setting: "showDeepseek"
-}
+        setting: "showDeepSeek"
+    }
 ];
 
 function createMenus() {
 
     chrome.contextMenus.removeAll(() => {
 
+        const settingKeys =
+            AI_SERVICES.map(
+                (ai) => ai.setting
+            );
+
         chrome.storage.sync.get(
-            [
-                "showChatGPT",
-                "showGemini",
-                "showPerplexity",
-                "showClaude",
-                "showDeepseek"
-            ],
+            settingKeys,
             (settings) => {
 
                 chrome.contextMenus.create({
