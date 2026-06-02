@@ -12,7 +12,9 @@
     "host_permissions": [
         "https://chatgpt.com/*",
         "https://gemini.google.com/*",
-        "https://www.perplexity.ai/*"
+        "https://www.perplexity.ai/*",
+        "https://claude.ai/*",
+        "https://chat.deepseek.com/*"
     ],
     "commands": {
         "send-selection": {
@@ -40,7 +42,9 @@
             "matches": [
                 "https://chatgpt.com/*",
                 "https://gemini.google.com/*",
-                "https://www.perplexity.ai/*"
+                "https://www.perplexity.ai/*",
+                "https://claude.ai/*",
+                "https://chat.deepseek.com/*"
             ],
             "js": [
                 "content.js"

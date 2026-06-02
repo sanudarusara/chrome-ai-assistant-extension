@@ -18,7 +18,19 @@ const AI_SERVICES = [
         name: "Perplexity",
         url: "https://www.perplexity.ai",
         setting: "showPerplexity"
-    }
+    },
+    {
+        id: "claude",
+        name: "Claude",
+        url: "https://claude.ai",
+        setting: "showClaude"
+    },
+    {
+        id: "deepseek",
+        name: "DeepSeek",
+        url: "https://chat.deepseek.com/",
+        setting: "showDeepseek"
+}
 ];
 
 function createMenus() {
@@ -29,7 +41,9 @@ function createMenus() {
             [
                 "showChatGPT",
                 "showGemini",
-                "showPerplexity"
+                "showPerplexity",
+                "showClaude",
+                "showDeepseek"
             ],
             (settings) => {
 

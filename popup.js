@@ -15,11 +15,23 @@ const perplexityToggle =
         "perplexityToggle"
     );
 
+const claudeToggle =
+    document.getElementById(
+        "claudeToggle"
+    );
+
+const deepseekToggle =
+    document.getElementById(
+        "deepseekToggle"
+    );
+
 chrome.storage.sync.get(
     [
         "showChatGPT",
         "showGemini",
-        "showPerplexity"
+        "showPerplexity",
+        "showClaude",
+        "showDeepSeek"
     ],
     (settings) => {
 
@@ -47,6 +59,21 @@ chrome.storage.sync.get(
                 settings.showPerplexity;
         }
 
+        if (
+            settings.showClaude !==
+            undefined
+        ) {
+            claudeToggle.checked =
+                settings.showClaude;
+        }
+
+        if (
+            settings.showDeepSeek !==
+            undefined
+        ) {
+            deepseekToggle.checked =
+                settings.showDeepSeek;
+        }
     }
 );
 
@@ -81,6 +108,30 @@ perplexityToggle.addEventListener(
         chrome.storage.sync.set({
             showPerplexity:
                 perplexityToggle.checked
+        });
+
+    }
+);
+
+claudeToggle.addEventListener(
+    "change",
+    () => {
+
+        chrome.storage.sync.set({
+            showClaude:
+                claudeToggle.checked
+        });
+
+    }
+);
+
+deepseekToggle.addEventListener(
+    "change",
+    () => {
+
+        chrome.storage.sync.set({
+            showDeepSeek:
+                deepseekToggle.checked
         });
 
     }
