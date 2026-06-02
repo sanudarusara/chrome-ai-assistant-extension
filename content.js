@@ -69,6 +69,10 @@ function insertTextIntoAI(
         selector = "textarea";
     }
 
+    if (hostname.includes("grok.com")) {
+        selector = "textarea";
+    }
+
     if (!selector) {
         return;
     }
