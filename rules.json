@@ -40,7 +40,8 @@
         "chatgpt.com",
         "gemini.google.com",
         "perplexity.ai",
-        "www.perplexity.ai"
+        "www.perplexity.ai",
+        "claude.ai"
       ],
       "resourceTypes": [
         "sub_frame",

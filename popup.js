@@ -15,11 +15,17 @@ const perplexityToggle =
         "perplexityToggle"
     );
 
+const claudeToggle =
+    document.getElementById(
+        "claudeToggle"
+    );
+
 chrome.storage.sync.get(
     [
         "showChatGPT",
         "showGemini",
-        "showPerplexity"
+        "showPerplexity",
+        "showClaude"
     ],
     (settings) => {
 
@@ -45,6 +51,14 @@ chrome.storage.sync.get(
         ) {
             perplexityToggle.checked =
                 settings.showPerplexity;
+        }
+
+        if (
+            settings.showClaude !==
+            undefined
+        ) {
+            claudeToggle.checked =
+                settings.showClaude;
         }
 
     }
@@ -81,6 +95,18 @@ perplexityToggle.addEventListener(
         chrome.storage.sync.set({
             showPerplexity:
                 perplexityToggle.checked
+        });
+
+    }
+);
+
+claudeToggle.addEventListener(
+    "change",
+    () => {
+
+        chrome.storage.sync.set({
+            showClaude:
+                claudeToggle.checked
         });
 
     }

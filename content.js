@@ -61,6 +61,10 @@ function insertTextIntoAI(
         selector = "#ask-input";
     }
 
+    if (hostname.includes("claude.ai")) {
+        selector = ".tiptap.ProseMirror";
+    }
+
     if (!selector) {
         return;
     }

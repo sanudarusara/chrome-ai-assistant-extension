@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
 
-    <div class="container">
+  <div class="container">
 
-        <h2>AI Selection Assistant</h2>
+    <h2>AI Selection Assistant</h2>
 
-        <div class="divider"></div>
+    <div class="divider"></div>
 
-        <div class="setting-row">
-            <span>Enable ChatGPT</span>
+    <div class="setting-row">
+      <span>Enable ChatGPT</span>
 
-            <label class="switch">
-                <input
-                    type="checkbox"
-                    id="chatgptToggle"
-                    checked
-                >
-                <span class="slider"></span>
-            </label>
-        </div>
-
-        <div class="setting-row">
-            <span>Enable Gemini</span>
-
-            <label class="switch">
-                <input
-                    type="checkbox"
-                    id="geminiToggle"
-                    checked
-                >
-                <span class="slider"></span>
-            </label>
-        </div>
-
-        <div class="setting-row">
-            <span>Enable Perplexity</span>
-
-            <label class="switch">
-                <input
-                    type="checkbox"
-                    id="perplexityToggle"
-                    checked
-                >
-                <span class="slider"></span>
-            </label>
-        </div>
-
+      <label class="switch">
+        <input type="checkbox" id="chatgptToggle" checked>
+        <span class="slider"></span>
+      </label>
     </div>
 
-    <script src="aiServices.js"></script>
-    <script src="popup.js"></script>
+    <div class="setting-row">
+      <span>Enable Gemini</span>
+
+      <label class="switch">
+        <input type="checkbox" id="geminiToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <span>Enable Perplexity</span>
+
+      <label class="switch">
+        <input type="checkbox" id="perplexityToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <span>Enable Claude</span>
+
+      <label class="switch">
+        <input type="checkbox" id="claudeToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+  </div>
+
+  <script src="aiServices.js"></script>
+  <script src="popup.js"></script>
 
 </body>
+
 </html>
