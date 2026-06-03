@@ -121,12 +121,17 @@ chrome.storage.local.get(
             items.sidePanelState.selectedText
         ) {
 
-            insertTextIntoAI(
-                items.sidePanelState.selectedText
-            );
+            if (window.location.hostname.includes("meta.ai")) {
 
+                setTimeout(() => {
+                    insertTextIntoAI(items.sidePanelState.selectedText);
+                }, 1500);
+            }
+            else {
+
+                insertTextIntoAI(items.sidePanelState.selectedText);
+            }
         }
-
     }
 );
 
