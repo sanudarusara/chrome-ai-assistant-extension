@@ -1,9 +1,5 @@
-console.log("PAGE CONTENT LOADED");
-
 chrome.runtime.onMessage.addListener(
     (message) => {
-
-        console.log("MESSAGE RECEIVED", message);
 
         if (
             message.action === "getSelection"
@@ -13,11 +9,6 @@ chrome.runtime.onMessage.addListener(
                 window
                     .getSelection()
                     .toString();
-
-            console.log(
-                "SELECTED:",
-                selectedText
-            );
 
             chrome.storage.local.set({
                 livePrompt: {

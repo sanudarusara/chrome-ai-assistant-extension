@@ -1,7 +1,5 @@
-console.log("BACKGROUND LOADED");
-
 import { AI_SERVICES }
-from "./aiServices.js";
+    from "./aiServices.js";
 
 function createMenus() {
 
@@ -115,26 +113,10 @@ chrome.commands.onCommand.addListener((command) => {
             },
             (tabs) => {
 
-                console.log("SHORTCUT FIRED");
-                console.log("TAB ID:", tabs[0]?.id);
-                console.log("TAB URL:", tabs[0]?.url);
-                console.log("TAB TITLE:", tabs[0]?.title);
-
                 chrome.tabs.sendMessage(
                     tabs[0].id,
                     {
                         action: "getSelection"
-                    },
-                    () => {
-
-                        if (chrome.runtime.lastError) {
-
-                            console.log(
-                                "No content script on this page"
-                            );
-
-                        }
-
                     }
                 );
 

@@ -1,8 +1,3 @@
-console.log(
-    "AI Content Script Loaded:",
-    window.location.href
-);
-
 function waitForElement(selector) {
 
     return new Promise((resolve) => {
@@ -73,18 +68,21 @@ function insertTextIntoAI(
         selector = "textarea";
     }
 
+    if (hostname.includes("copilot.microsoft.com")) {
+        selector = "textarea";
+    }
+
+    if (hostname.includes("meta.ai")) {
+        selector =
+            'input[placeholder="Ask Meta AI..."]';
+    }
+
     if (!selector) {
         return;
     }
 
     waitForElement(selector)
         .then((element) => {
-
-            console.log(
-                "INJECTING:",
-                text,
-                Date.now()
-            );
 
             element.focus();
 
@@ -136,11 +134,6 @@ chrome.storage.local.get(
 chrome.storage.onChanged.addListener(
     (changes, namespace) => {
 
-        console.log(
-            "STORAGE CHANGED",
-            changes
-        );
-
         if (
             namespace === "local" &&
             changes.livePrompt
@@ -148,11 +141,6 @@ chrome.storage.onChanged.addListener(
 
             const text =
                 changes.livePrompt.newValue.text;
-
-            console.log(
-                "LIVE PROMPT RECEIVED",
-                text
-            );
 
             const hostname =
                 window.location.hostname;
