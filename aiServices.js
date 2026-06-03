@@ -38,5 +38,17 @@ export const AI_SERVICES = [
         name: "Grok",
         url: "https://grok.com",
         setting: "showGrok"
+    },
+    {
+        id: "copilot",
+        name: "Copilot",
+        url: "https://copilot.microsoft.com",
+        setting: "showCopilot"
+    },
+    {
+        id: "meta",
+        name: "Meta AI",
+        url: "https://www.meta.ai",
+        setting: "showMeta"
     }
 ];

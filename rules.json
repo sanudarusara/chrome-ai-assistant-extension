@@ -43,7 +43,9 @@
         "www.perplexity.ai",
         "claude.ai",
         "chat.deepseek.com",
-        "grok.com"
+        "grok.com",
+        "copilot.microsoft.com",
+        "www.meta.ai"
       ],
       "resourceTypes": [
         "sub_frame",
