@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    width: 320px;
+    width: 300px;
     background: #1f1f1f;
     color: white;
     font-family: Arial, sans-serif;
@@ -12,9 +12,15 @@ body {
 }
 
 h2 {
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-size: 20px;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.subtitle {
+    margin: 4px 0 16px;
+    color: #9aa0a6;
+    font-size: 12px;
 }
 
 .divider {
@@ -23,11 +29,31 @@ h2 {
     margin-bottom: 16px;
 }
 
+.shortcut-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+
+.shortcut-card span {
+    color: #9aa0a6;
+    font-size: 12px;
+}
+
+.shortcut-card strong {
+    font-size: 13px;
+}
+
 .setting-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 }
 
 .switch {
@@ -43,8 +69,8 @@ h2 {
 
 .slider {
     position: absolute;
-    cursor: pointer;
     inset: 0;
+    cursor: pointer;
     background-color: #444;
     transition: .2s;
     border-radius: 28px;
@@ -62,10 +88,92 @@ h2 {
     border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #2196f3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(24px);
+}
+
+#ai-settings {
+    padding: 0 10px;
+}
+
+.ai-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ai-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.footer {
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid #333;
+    text-align: center;
+    color: #9aa0a6;
+    font-size: 11px;
+}
+
+.guide-card {
+    margin-top: 8px;
+    padding: 0;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+
+.guide-card[open] .guide-content {
+    padding: 2px 12px 12px;
+}
+
+.guide-title {
+    padding: 10px 12px;
+    margin: 0;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    list-style: none;
+    cursor: pointer;
+}
+
+.guide-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.guide-item strong {
+    width: 90px;
+    flex-shrink: 0;
+    color: #c0c4c9;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.guide-item span {
+    color: #9aa0a6;
+    font-size: 11px;
+}
+
+.guide-title::after {
+    content: "\25BC";
+    float: right;
+    transition: transform 0.2s;
+}
+
+.guide-card[open] .guide-title::after {
+    transform: rotate(180deg);
+}
+
+.guide-title::-webkit-details-marker {
+    display: none;
 }

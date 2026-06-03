@@ -1,5 +1,5 @@
 import { AI_SERVICES }
-from "./aiServices.js";
+    from "./aiServices.js";
 
 const container =
     document.getElementById(
@@ -15,7 +15,17 @@ AI_SERVICES.forEach((ai) => {
         "setting-row";
 
     row.innerHTML = `
-        <span>Enable ${ai.name}</span>
+        <span class="ai-label">
+
+            <img
+                src="${ai.logo}"
+                class="ai-logo"
+                alt="${ai.name}"
+            >
+
+            <span>${ai.name}</span>
+
+        </span>
 
         <label class="switch">
             <input
