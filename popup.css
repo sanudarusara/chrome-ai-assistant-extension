@@ -210,3 +210,35 @@ input:checked+.slider:before {
 .guide-title::-webkit-details-marker {
     display: none;
 }
+
+.guide-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    color: #9aa0a6;
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 12px;
+}
+
+.guide-note + .guide-note {
+    margin-top: 1px;
+}
+
+.guide-note a {
+    color: #b8bec5;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.guide-note a:hover {
+    color: #d0d5da;
+    text-decoration: underline;
+}
+
+.guide-icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}

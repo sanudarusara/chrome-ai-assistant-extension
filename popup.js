@@ -81,3 +81,18 @@ chrome.storage.sync.get(
 
     }
 );
+
+const shortcutsLink =
+    document.getElementById("open-shortcuts");
+
+if (shortcutsLink) {
+
+    shortcutsLink.addEventListener("click", () => {
+
+        chrome.tabs.create({
+            url: "chrome://extensions/shortcuts"
+        });
+
+    });
+
+}
