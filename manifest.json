@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "AiPal - Multi AI Assitant",
+    "name": "AiPal - Multi AI Assistant",
     "version": "1.0",
     "permissions": [
         "contextMenus",
@@ -24,7 +24,7 @@
             "suggested_key": {
                 "default": "Alt+A"
             },
-            "description": "Send selected text to active AI"
+            "description": "Continue chat with selected text (Alt+A)"
         }
     },
     "background": {
