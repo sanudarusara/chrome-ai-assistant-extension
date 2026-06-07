@@ -2,6 +2,7 @@
     "manifest_version": 3,
     "name": "AiPal - Multi AI Sidebar Assistant for Chrome",
     "version": "1.0",
+    "description":"Quick access to ChatGPT, Claude, Gemini, Perplexity, Grok, DeepSeek, Copilot and Meta AI in the Browser Sidebar for AI-powered search and continuous chat from selected text.",
     "permissions": [
         "contextMenus",
         "storage",
