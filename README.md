@@ -1,7 +1,7 @@
 # 🤖 AiPal – Multi AI Sidebar Assistant for Chrome 🚀
 
 <p align="center">
-  <img src="images/1_Cover.png" width="90%" />
+  <img src="assets/images/cover.png" width="90%" />
 </p>
 
 **AiPal** is a productivity-focused Chrome Extension that brings **8 of the world's leading AI assistants directly into your browser's side panel**, allowing users to chat, research, write, code, and brainstorm without constantly switching tabs.
@@ -22,12 +22,12 @@ The extension combines several productivity-focused features including:
 
 ---
 
-# 🌟 Features Overview
+# Features Overview
 
 ## 🤖 Open AI - Multi-AI Side Panel
 
 <p align="center">
-  <img src="images/2_OpenAI.png" width="85%" />
+  <img src="assets/images/open_ai.png" width="90%" />
 </p>
 
 AiPal provides instant access to multiple AI assistants directly from Chrome's side panel.
@@ -50,7 +50,7 @@ Users can instantly switch between AI services without opening new tabs or searc
 ## ✨ Ask AI – Instant AI access by Selecting Text
 
 <p align="center">
-  <img src="images/3_AskAI.png" width="85%" />
+  <img src="assets/images/ask_ai.png" width="90%" />
 </p>
 
 The **Ask AI** feature allows users to instantly send selected webpage content(Text) to their preferred AI assistant in the sidebar.
@@ -68,7 +68,7 @@ This makes researching, summarizing, explaining, and learning significantly fast
 ## ⌨️ Alt + A - Keyboard Shortcut Support
 
 <p align="center">
-  <img src="images/4_AltA.png" width="85%" />
+  <img src="assets/images/shortcut.png" width="90%" />
 </p>
 
 AiPal includes a powerful productivity shortcut:
@@ -88,7 +88,7 @@ This provides one of the fastest ways to interact with AI while browsing.
 ## ⚙️ Customizable Extension Popup
 
 <p align="center">
-  <img src="images/5_Popup.png" width="85%" />
+  <img src="assets/images/popup.png" width="90%" />
 </p>
 
 The extension popup allows users to personalize their experience.
